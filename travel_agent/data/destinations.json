@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Kyoto",
+    "country": "Japan",
+    "summary": "Historic temples, gardens, seasonal scenery, tea culture, and excellent food.",
+    "activities": ["culture", "history", "food", "photography"],
+    "tips": "Use public transit, reserve popular temples early, and allow quiet mornings."
+  },
+  {
+    "name": "Lisbon",
+    "country": "Portugal",
+    "summary": "Hillside neighborhoods, coastal day trips, museums, music, and affordable cuisine.",
+    "activities": ["culture", "food", "history", "beach"],
+    "tips": "Wear comfortable shoes and use trams selectively during busy hours."
+  },
+  {
+    "name": "Banff",
+    "country": "Canada",
+    "summary": "Mountain scenery, lakes, wildlife, hiking, and winter adventure.",
+    "activities": ["hiking", "nature", "wildlife", "skiing", "adventure"],
+    "tips": "Check trail conditions, carry layers, and respect wildlife distances."
+  },
+  {
+    "name": "Bali",
+    "country": "Indonesia",
+    "summary": "Beaches, temples, rice terraces, wellness, diving, and vibrant local food.",
+    "activities": ["beach", "culture", "nature", "food", "relaxation"],
+    "tips": "Plan around traffic, carry modest clothing for temples, and check rainy-season forecasts."
+  }
+]

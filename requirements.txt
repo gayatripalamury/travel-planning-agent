@@ -1,0 +1,4 @@
+Flask>=3.0,<4
+pytest>=8.0,<9
+# Optional observability integration:
+# mlflow>=2.0

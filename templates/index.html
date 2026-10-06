@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Travel Planning Agent</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 850px; margin: 2rem auto; padding: 0 1rem; color: #203040; }
+    textarea { width: 100%; min-height: 100px; padding: .7rem; }
+    button { margin: .7rem 0; padding: .6rem 1rem; cursor: pointer; }
+    #output { background: #f3f6f8; padding: 1rem 1.25rem; border-radius: .4rem; }
+    section { margin: 1rem 0; }
+    h2 { margin-bottom: .35rem; color: #174a63; }
+    ul { margin-top: .35rem; }
+    .error { color: #9b1c1c; }
+  </style>
+</head>
+<body>
+  <h1>Offline-first Travel Planning Agent</h1>
+  <p>Try: “Plan a 5 day hiking and food trip to Banff under $1800 from 2026-07-10 to 2026-07-15.”</p>
+  <textarea id="request">Plan a 5 day food and culture trip to Kyoto under $1500 from 2026-10-10 to 2026-10-14.</textarea>
+  <br><button onclick="plan()">Create plan</button>
+  <div id="output">Your grounded plan will appear here.</div>
+  <script>
+    const output = document.getElementById('output');
+
+    function section(title, content) {
+      const element = document.createElement('section');
+      const heading = document.createElement('h2');
+      heading.textContent = title;
+      element.append(heading, content);
+      return element;
+    }
+
+    function text(value) {
+      const element = document.createElement('p');
+      element.textContent = value;
+      return element;
+    }
+
+    function list(items, formatter) {
+      const element = document.createElement('ul');
+      items.forEach(item => {
+        const entry = document.createElement('li');
+        entry.textContent = formatter(item);
+        element.appendChild(entry);
+      });
+      return element;
+    }
+
+    function renderPlan(plan) {
+      output.replaceChildren();
+      const request = plan.request || {};
+      const dates = request.start_date && request.end_date
+        ? `${request.start_date} to ${request.end_date}`
+        : 'Dates not specified';
+      output.append(
+        section('Destination', text(request.destination || 'Destination not specified')),
+        section('Dates', text(dates)),
+        section('Activities', plan.activities && plan.activities.items
+          ? list(plan.activities.items, item => `${item.name} — estimated cost: ${item.estimated_cost}`)
+          : text('No activities found.')),
+        section('Weather', text(plan.weather
+          ? `${plan.weather.forecast} High: ${plan.weather.high_celsius}°C. Precipitation risk: ${plan.weather.precipitation_risk}.`
+          : 'Weather unavailable.')),
+        section('Budget', text(plan.budget
+          ? `Estimated total: ${plan.budget.total} ${request.currency || 'USD'} for ${plan.budget.days} day(s). `
+            + (plan.budget.within_budget ? 'This is within your budget.' : 'This exceeds your requested budget.')
+          : 'Budget unavailable.')),
+        section('Recommendation', text(plan.recommendation || 'No recommendation available.'))
+      );
+    }
+
+    async function plan() {
+      output.textContent = 'Creating your travel plan…';
+      output.className = '';
+      try {
+        const response = await fetch('/api/plan', {
+          method: 'POST', headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({text: document.getElementById('request').value})
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Unable to create plan.');
+        renderPlan(result);
+      } catch (error) {
+        output.textContent = error.message;
+        output.className = 'error';
+      }
+    }
+  </script>
+</body>
+</html>
