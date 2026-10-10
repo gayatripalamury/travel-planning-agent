@@ -1,0 +1,12 @@
+[
+  {"amount": 1200, "prior_claims_30d": 0, "provider_risk": "low", "duplicate_invoice": false, "missing_documents": false, "service_after_submission": false, "fraud": 0},
+  {"amount": 2400, "prior_claims_30d": 1, "provider_risk": "low", "duplicate_invoice": false, "missing_documents": false, "service_after_submission": false, "fraud": 0},
+  {"amount": 8500, "prior_claims_30d": 2, "provider_risk": "elevated", "duplicate_invoice": false, "missing_documents": true, "service_after_submission": false, "fraud": 1},
+  {"amount": 12000, "prior_claims_30d": 4, "provider_risk": "high", "duplicate_invoice": true, "missing_documents": true, "service_after_submission": false, "fraud": 1},
+  {"amount": 700, "prior_claims_30d": 0, "provider_risk": "low", "duplicate_invoice": false, "missing_documents": true, "service_after_submission": false, "fraud": 0},
+  {"amount": 15000, "prior_claims_30d": 3, "provider_risk": "high", "duplicate_invoice": false, "missing_documents": false, "service_after_submission": true, "fraud": 1},
+  {"amount": 4300, "prior_claims_30d": 0, "provider_risk": "elevated", "duplicate_invoice": false, "missing_documents": false, "service_after_submission": false, "fraud": 0},
+  {"amount": 9800, "prior_claims_30d": 3, "provider_risk": "elevated", "duplicate_invoice": true, "missing_documents": false, "service_after_submission": false, "fraud": 1},
+  {"amount": 1800, "prior_claims_30d": 1, "provider_risk": "low", "duplicate_invoice": false, "missing_documents": false, "service_after_submission": false, "fraud": 0},
+  {"amount": 11000, "prior_claims_30d": 0, "provider_risk": "high", "duplicate_invoice": false, "missing_documents": true, "service_after_submission": false, "fraud": 1}
+]

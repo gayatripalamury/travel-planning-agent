@@ -1,4 +1,7 @@
 Flask>=3.0,<4
 pytest>=8.0,<9
-# Optional observability integration:
+scikit-learn>=1.3,<2
+# Optional real Google Gemini function-calling integration:
+# google-genai>=1.0,<2
+# Optional experiment tracking:
 # mlflow>=2.0
